@@ -1,0 +1,3 @@
+loops: while (not for)
+lazy evaluation
+build your own counters

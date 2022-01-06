@@ -1,0 +1,6 @@
+objects, OO
+classes and methods
+instances as return values
+classes using classes
+classes as values in dictionaries
+MIDTERM

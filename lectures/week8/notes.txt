@@ -1,0 +1,3 @@
+review for midterm
+MIDTERM 2
+collections: lists, tuples, sets
