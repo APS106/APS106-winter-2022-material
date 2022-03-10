@@ -8,6 +8,10 @@ Author: Sebastian D. Goodfellow
 import json
 
 
-def json_print(obj):
+def dict_print(obj):
     text = json.dumps(obj, sort_keys=True, indent=4)
     print(text)
+
+
+def load_data():
+    return json.load(open('data.json'))
