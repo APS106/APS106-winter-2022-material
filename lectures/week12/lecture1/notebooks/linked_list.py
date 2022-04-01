@@ -139,6 +139,8 @@ class BinarySearchTree:
         Create an empty binary tree.
         """
         self.root = root
+        if not self.is_valid():
+            print('This is not a valid binary search tree.')
 
     def print_tree(self):
         """
@@ -187,3 +189,23 @@ class BinarySearchTree:
             on = on.right
 
         return True
+
+    def find(self, cargo):
+        """
+        (self, number) -> bool
+        Checks if cargo value is in the tree.
+        """
+        on = self.root
+
+        while on is not None:
+
+            if cargo > on.cargo:
+                on = on.right
+
+            elif cargo < on.cargo:
+                on = on.left
+
+            else:
+                return True
+
+        return False
