@@ -128,3 +128,62 @@ class BinaryTree:
 
             print('\n')
             level = level_next
+
+
+class BinarySearchTree:
+    """A Node class used by a binary search tree class."""
+
+    def __init__(self, root=None):
+        """
+        (self) -> NoneType
+        Create an empty binary tree.
+        """
+        self.root = root
+
+    def print_tree(self):
+        """
+        (self) -> NoneType
+        Prints tree level by level.
+        """
+        level = [self.root]
+
+        while len(level) > 0:
+
+            level_next = []
+
+            for node in level:
+
+                print(node, " ", end="")
+
+                if node.left is not None:
+                    level_next.append(node.left)
+                if node.right is not None:
+                    level_next.append(node.right)
+
+            print('\n')
+            level = level_next
+
+    def is_valid(self):
+        """
+        (self) -> NoneType
+        Checks if self.root is a valid binary search tree.
+        """
+        on = self.root
+        stack = []
+        prev = None
+
+        while len(stack) > 0 or on is not None:
+
+            while on is not None:
+                stack.append(on)
+                on = on.left
+
+            on = stack.pop()
+
+            if prev is not None and on.cargo <= prev.cargo:
+                return False
+
+            prev = on
+            on = on.right
+
+        return True
