@@ -1,0 +1,277 @@
+Index: lectures/week 13/lecture2/Final_exam_review_longanswer.ipynb
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/lectures/week 13/lecture2/Final_exam_review_longanswer.ipynb b/lectures/week 13/lecture2/Final_exam_review_longanswer.ipynb
+--- a/lectures/week 13/lecture2/Final_exam_review_longanswer.ipynb	
++++ b/lectures/week 13/lecture2/Final_exam_review_longanswer.ipynb	(date 1649911906695)
+@@ -35,6 +35,9 @@
+    "execution_count": 1,
+    "outputs": [],
+    "source": [
++    "import numpy\n",
++    "\n",
++    "\n",
+     "class LibraryEmployee:\n",
+     "    def __init__(self, name, favourites):\n",
+     "        self.name = name\n",
+@@ -140,17 +143,253 @@
+   },
+   {
+    "cell_type": "code",
+-   "execution_count": null,
++   "execution_count": 110,
+    "outputs": [],
+    "source": [
+     "class Node:\n",
+-    "    def __init__(self, c=None, p=None):\n",
++    "    def __init__(self, c = None, p = None):\n",
+     "        '''Creates an object of type Node.'''\n",
+-    "\n",
+     "        self.cargo = c\n",
+     "        self.priority = p\n",
+-    "        self.next = None\n",
+-    "class"
++    "        self.next = None"
++   ],
++   "metadata": {
++    "collapsed": false,
++    "pycharm": {
++     "name": "#%%\n"
++    }
++   }
++  },
++  {
++   "cell_type": "code",
++   "execution_count": 148,
++   "outputs": [],
++   "source": [
++    "class LinkedList:\n",
++    "    def __init__(self):\n",
++    "        '''Creates a linked list, i.e., an object of type LinkedList. This list is empty.\n",
++    "        '''\n",
++    "\n",
++    "        self.length = 0 # the number of elements in the list\n",
++    "        self.head = None\n",
++    "\n",
++    "    def __str__(self):\n",
++    "        \"\"\"\n",
++    "        (self) -> str\n",
++    "        Print out the entire linked list from head (left) to tail (right).\n",
++    "        \"\"\"\n",
++    "        if self.head is not None:\n",
++    "\n",
++    "            string = ''\n",
++    "            on = self.head\n",
++    "\n",
++    "            while on is not None:\n",
++    "                string += on.__str__() + ' --> '\n",
++    "                on = on.next\n",
++    "            else:\n",
++    "                string += on.__str__()\n",
++    "\n",
++    "            return string\n",
++    "        else:\n",
++    "            return 'empty list'\n",
++    "\n",
++    "    def insert_in_front(self, cargo, priority):\n",
++    "        '''(LinkedList) -> NoneType\n",
++    "        Insert an element at the front of the list.\n",
++    "        '''\n",
++    "        if self.length == 0:\n",
++    "            self.head = Node(cargo, priority)\n",
++    "        else:\n",
++    "            aux = self.head\n",
++    "            self.head = Node(cargo, priority)\n",
++    "            self.head.next = aux\n",
++    "\n",
++    "        self.length += 1\n",
++    "\n",
++    "    def insert_after_node(self, n, cargo, priority):\n",
++    "        '''Linked List -> NoneType\n",
++    "        Insert an element in the list, right after node n.\n",
++    "        '''\n",
++    "        aux = n.next\n",
++    "        n.next = Node(c, priority)\n",
++    "        n.next.next = aux\n",
++    "        self.length += 1\n",
++    "\n",
++    "    def is_empty(self):\n",
++    "        '''(LinkedList) -> bool\n",
++    "        Return True if the list is empty and False otherwise'''\n",
++    "        return self.head.next is None\n",
++    "\n",
++    "    def extract_first(self):\n",
++    "        '''(LinkedList) -> string or NoneType\n",
++    "        If the list has at least one element, remove the first element from the list, return its cargo and assign the next node in the sequence to be the new head of the list. If the list has only one element, remove the element and return its cargo. Return none if the list is empty. (No element removal is performed in this case). '''\n",
++    "\n",
++    "        if self.length > 1:\n",
++    "            temp = self.head\n",
++    "            # Move the head pointer to the next node\n",
++    "            self.head = self.head.next\n",
++    "            temp = None\n",
++    "            return self.head.cargo\n",
++    "\n",
++    "        elif self.length == 1:\n",
++    "            temp = self.head.cargo\n",
++    "            self.head = None\n",
++    "            return temp\n",
++    "        \n",
++    "        else:\n",
++    "            return None"
++   ],
++   "metadata": {
++    "collapsed": false,
++    "pycharm": {
++     "name": "#%%\n"
++    }
++   }
++  },
++  {
++   "cell_type": "code",
++   "execution_count": 149,
++   "outputs": [],
++   "source": [
++    "linked_list = LinkedList()"
++   ],
++   "metadata": {
++    "collapsed": false,
++    "pycharm": {
++     "name": "#%%\n"
++    }
++   }
++  },
++  {
++   "cell_type": "code",
++   "execution_count": 150,
++   "outputs": [],
++   "source": [
++    "linked_list.insert_in_front('Robin', 7)\n",
++    "linked_list.insert_in_front('Eric', 6)"
++   ],
++   "metadata": {
++    "collapsed": false,
++    "pycharm": {
++     "name": "#%%\n"
++    }
++   }
++  },
++  {
++   "cell_type": "code",
++   "execution_count": 151,
++   "outputs": [
++    {
++     "data": {
++      "text/plain": "'<__main__.Node object at 0x0000023C522FB940> --> <__main__.Node object at 0x0000023C522FBCA0> --> None'"
++     },
++     "execution_count": 151,
++     "metadata": {},
++     "output_type": "execute_result"
++    }
++   ],
++   "source": [
++    "linked_list.__str__()"
++   ],
++   "metadata": {
++    "collapsed": false,
++    "pycharm": {
++     "name": "#%%\n"
++    }
++   }
++  },
++  {
++   "cell_type": "code",
++   "execution_count": 152,
++   "outputs": [],
++   "source": [
++    "def len_link(list):\n",
++    "    temp=list.head\n",
++    "    count=0\n",
++    "    while(temp):\n",
++    "        count+=1\n",
++    "        temp=temp.next\n",
++    "    return count"
++   ],
++   "metadata": {
++    "collapsed": false,
++    "pycharm": {
++     "name": "#%%\n"
++    }
++   }
++  },
++  {
++   "cell_type": "code",
++   "execution_count": 153,
++   "outputs": [
++    {
++     "data": {
++      "text/plain": "2"
++     },
++     "execution_count": 153,
++     "metadata": {},
++     "output_type": "execute_result"
++    }
++   ],
++   "source": [
++    "len_link(linked_list)"
++   ],
++   "metadata": {
++    "collapsed": false,
++    "pycharm": {
++     "name": "#%%\n"
++    }
++   }
++  },
++  {
++   "cell_type": "code",
++   "execution_count": 154,
++   "outputs": [
++    {
++     "data": {
++      "text/plain": "'Robin'"
++     },
++     "execution_count": 154,
++     "metadata": {},
++     "output_type": "execute_result"
++    }
++   ],
++   "source": [
++    "linked_list.extract_first()"
++   ],
++   "metadata": {
++    "collapsed": false,
++    "pycharm": {
++     "name": "#%%\n"
++    }
++   }
++  },
++  {
++   "cell_type": "code",
++   "execution_count": null,
++   "outputs": [],
++   "source": [
++    "def insert(self, cargo, priority):\n",
++    "    '''(LinkedList, string, int) -> NoneType\n",
++    "    Insert a new element in the list at the position corresponding to its given priority. Update the length of the list'''\n",
++    "\n",
++    "    newNode = Node(cargo, priority)\n",
++    "        if self.head.priority < newNode.priority:\n",
++    "            newNode.next = self.head\n",
++    "            self.head = newNode\n",
++    "            return True\n",
++    "        previous = None\n",
++    "        on = self.head\n",
++    "        while(on and newNode.priority < on.priority):\n",
++    "            previous = on\n",
++    "            on = on.next\n",
++    "\n",
++    "        if on != None:\n",
++    "            previous.next = newNode\n",
++    "            newNode.next = on\n",
++    "        else:\n",
++    "            self..next = newNode\n",
++    "            self.rear = newNode"
+    ],
+    "metadata": {
+     "collapsed": false,
